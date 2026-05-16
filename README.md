@@ -1,21 +1,14 @@
 # Machine Learning Notes & Implementations
 
-个人机器学习学习与算法实现仓库。
+This repository contains my personal learning notes, algorithm implementations, and experiments in machine learning.
 
-目前主要基于：
+The project is mainly based on:
 
-- 《机器学习》（周志华）
-- Python/Numpy
-- 部分数学推导与可视化实验
+- *Machine Learning* by Zhou Zhihua
+- Python / NumPy
+- Mathematical derivations and visualization experiments
 
-仓库内容包括：
-
-- 机器学习算法实现
-- 数学推导理解
-- 实验对比
-- 可视化分析
-- 非理想数据测试
-- 一些个人思考与总结
+The goal of this repository is not only to reproduce algorithms, but also to better understand their assumptions, limitations, and behaviors under different data distributions.
 
 ---
 
@@ -28,6 +21,8 @@ ML/
 ├── ch4-decision-tree/
 ├── ch5-neural-network/
 ├── ch6-svm/
+├── ch7-bayes/
+├── ch8-ensemble-learning/
 └── assets/
 ```
 
@@ -37,48 +32,52 @@ ML/
 
 | Chapter | Content | Status |
 |---|---|---|
-| Ch3 | Linear Model | ✅ |
-| Ch4 | Decision Tree | ✅ |
-| Ch5 | Neural Network | ⏳ |
-| Ch6 | SVM | ⏳ |
+| Ch3 | Linear Models | ✅ |
+| Ch4 | Decision Trees | ✅ |
+| Ch5 | Neural Networks | ⏳ |
+| Ch6 | Support Vector Machines | ⏳ |
+| Ch7 | Bayesian Learning | ⏳ |
+| Ch8 | Ensemble Learning | ⏳ |
 
 ---
 
 # Features
 
-## 1. Algorithm Implementation
+## 1. Algorithm Implementations
 
-尽量使用：
+Most algorithms are implemented using:
 
-- Numpy
-- 基础矩阵运算
+- NumPy
+- Basic matrix operations
 
-实现机器学习算法，而非直接调用高级 API。
+instead of directly calling high-level machine learning APIs.
+
+The purpose is to better understand the mathematical principles behind the models.
 
 ---
 
-## 2. Visualization
+## 2. Visualization Experiments
 
-包含：
+The repository includes various visualization experiments such as:
 
-- 数据分布可视化
-- 分类结果可视化
-- 多分类对比
-- 非理想数据测试
+- Data distribution visualization
+- Classification result visualization
+- Multi-class classification comparison
+- Decision boundary analysis
 
 ---
 
 ## 3. Robustness Testing
 
-除了理想数据外，还测试：
+In addition to ideal datasets, some experiments also test models on:
 
-- 噪声数据
-- 离群点
-- 非高斯分布
-- 双峰分布
-- 非线性数据
+- Noisy data
+- Outliers
+- Non-Gaussian distributions
+- Multi-modal distributions
+- Nonlinear datasets
 
-用于观察算法在实际情况下的表现。
+to observe how model performance changes under non-ideal conditions.
 
 ---
 
@@ -86,20 +85,24 @@ ML/
 
 ## LDA Multi-class Classification
 
-实现：
+Implemented:
 
 - OvR (One-vs-Rest)
 - OvO (One-vs-One)
 
-并测试：
+and compared their performances on:
 
-- 理想高斯数据
-- 非理想非高斯数据
+- Ideal Gaussian datasets
+- Non-ideal datasets
 
-观察：
+including:
 
-- LDA 在线性可分情况下效果较好
-- 在非凸数据上存在局限性
+- noisy samples
+- outliers
+- moon-shaped distributions
+- covariance mismatch
+
+The experiments show that LDA performs well under linear assumptions, but struggles on nonlinear or non-convex distributions.
 
 ---
 
@@ -116,11 +119,11 @@ scikit-learn
 
 # Notes
 
-该仓库目前主要作为：
+This repository currently serves as:
 
-- 学习记录
-- 算法实现练习
-- 数学理解整理
-- 研究生阶段前的基础积累
+- a machine learning learning log
+- algorithm implementation practice
+- mathematical understanding notes
+- preparation for future research work
 
-后续会持续更新。
+The repository will continue to be updated over time.
