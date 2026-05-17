@@ -1,7 +1,7 @@
 """
 连续与缺失值
 数据集：表4.3和表4.4
-可视化结果：a4_4_hybrid.png
+可视化结果：ch4_4_hybrid.png
 """
 from __future__ import annotations
 
@@ -15,7 +15,7 @@ import matplotlib
 import matplotlib.pyplot as plt
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-import a4_2  # noqa: E402
+import ch4_2  # noqa: E402
 
 IW = List[Tuple[int, float]]  # (样本全局下标, 当前结点权重)
 
@@ -49,7 +49,7 @@ def _split_xy43() -> Tuple[List[List[Any]], List[str]]:
 
 
 # 表4.4 西瓜数据集2.0α（教材用「?」表示缺失；此处用 None）
-FEAT44 = a4_2.FEATURE_NAMES
+FEAT44 = ch4_2.FEATURE_NAMES
 TAB44: List[List[Any]] = [
     [None, "蜷缩", "浊响", "清晰", "凹陷", "硬滑", "是"],
     ["乌黑", "蜷缩", "沉闷", "清晰", "凹陷", None, "是"],
@@ -410,17 +410,17 @@ def main() -> None:
     iw0: IW = [(i, 1.0) for i in range(len(y44))]
     root44 = _build_hybrid(X44, y44, names44, iw0, list(range(6)), [], min_weight_frac=0.02)
     pred44 = _predict_all(X44, root44, X44)
-    acc44 = a4_2._accuracy([str(t) for t in y44], [str(t) for t in pred44])
+    acc44 = ch4_2._accuracy([str(t) for t in y44], [str(t) for t in pred44])
     X43, y43 = _split_xy43()
     iw1: IW = [(i, 1.0) for i in range(len(y43))]
     root43 = _build_hybrid(X43, y43, FEAT43, iw1, list(range(6)), [6, 7], min_weight_frac=0.02)
     pred43 = _predict_all(X43, root43, X43)
-    acc43 = a4_2._accuracy([str(t) for t in y43], [str(t) for t in pred43])
+    acc43 = ch4_2._accuracy([str(t) for t in y43], [str(t) for t in pred43])
     fig, axes = plt.subplots(1, 2, figsize=(13, 4.0), constrained_layout=True)
     fig.suptitle("表4.4（2.0α 缺失·加权划分）与 表4.3/西瓜3.0（连续·二分）", fontsize=12, fontweight="bold")
     _plot_hybrid_ax(axes[0], root44, "表4.4 西瓜2.0α 离散+缺失", acc44)
     _plot_hybrid_ax(axes[1], root43, "表4.3 离散+密度/含糖率（连续可重复划分）", acc43)
-    out = os.path.join(os.path.dirname(os.path.abspath(__file__)), "a4_4_hybrid.png")
+    out = os.path.join(os.path.dirname(os.path.abspath(__file__)), "ch4_4_hybrid.png")
     fig.savefig(out, dpi=150)
     if "agg" in matplotlib.get_backend().lower():
         plt.close(fig)

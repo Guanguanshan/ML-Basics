@@ -10,6 +10,9 @@
 6. 更新参数 w = w - lr * dw
 7. 更新参数 b = b - lr * db
 '''
+import os
+
+import matplotlib
 import numpy as np
 import matplotlib.pyplot as plt
 
@@ -56,6 +59,16 @@ print("b =", b)
 x_plot = np.linspace(0, 9, 100)
 y_plot = sigmoid(w * x_plot + b)
 
+plt.rcParams["font.sans-serif"] = ["Microsoft YaHei", "SimHei", "DejaVu Sans"]
+plt.rcParams["axes.unicode_minus"] = False
 plt.scatter(X, y)
 plt.plot(x_plot, y_plot)
-plt.show()
+plt.xlabel("X")
+plt.ylabel("y")
+plt.title("对数几率回归（sigmoid 拟合曲线）")
+_out = os.path.join(os.path.dirname(os.path.abspath(__file__)), "ch3_3_logistic.png")
+plt.savefig(_out, dpi=150, bbox_inches="tight")
+if "agg" not in matplotlib.get_backend().lower():
+    plt.show()
+else:
+    plt.close()

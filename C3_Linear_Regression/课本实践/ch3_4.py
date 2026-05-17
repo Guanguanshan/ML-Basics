@@ -2,9 +2,12 @@
 3.4 线性判别分析（可复用模块版）
 手写 Linear Discriminant Analysis（LDA）二分类
 可视化：理想数据 vs 非理想数据
-为方便在3_5.py中直接调用下面的函数，将该文件改名为a3_4.py
+LDA 可复用模块；供 ch3_5.py 调用（from ch3_4 import ...）
 """
 
+import os
+
+import matplotlib
 import numpy as np
 import matplotlib.pyplot as plt
 
@@ -161,7 +164,12 @@ def demo_binary():
     plot_lda(axes[0], X0_good, X1_good, w_good, center_good, th_good, f"理想数据（acc={acc_good:.2f}）")
     plot_lda(axes[1], X0_bad, X1_bad, w_bad, center_bad, th_bad, f"非理想数据（acc={acc_bad:.2f}）")
     plt.tight_layout()
-    plt.show()
+    out = os.path.join(os.path.dirname(os.path.abspath(__file__)), "ch3_4_lda.png")
+    fig.savefig(out, dpi=150, bbox_inches="tight")
+    if "agg" not in matplotlib.get_backend().lower():
+        plt.show()
+    else:
+        plt.close(fig)
 
 
 if __name__ == "__main__":

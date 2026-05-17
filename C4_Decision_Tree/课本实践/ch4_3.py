@@ -1,7 +1,7 @@
 """
 预剪枝+后剪枝
 数据集：西瓜数据集 2.0（表 4.1）
-可视化结果：a4_3_prune.png
+可视化结果：ch4_3_prune.png
 """
 from __future__ import annotations
 
@@ -15,8 +15,8 @@ import matplotlib
 import matplotlib.pyplot as plt
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from a4_1 import DecisionTreeClassifier, predict_from_node, _majority_label  # noqa: E402
-import a4_2  # noqa: E402
+from ch4_1 import DecisionTreeClassifier, predict_from_node, _majority_label  # noqa: E402
+import ch4_2  # noqa: E402
 
 
 def _val_indices_reaching(root: dict, X_val: List[List[Any]]) -> Dict[int, List[int]]:
@@ -108,10 +108,10 @@ def _strip_train_ids(node: dict) -> None:
 def main() -> None:
     plt.rcParams["font.sans-serif"] = ["Microsoft YaHei", "SimHei", "DejaVu Sans"]
     plt.rcParams["axes.unicode_minus"] = False
-    X, y = a4_2._split_xy(a4_2.WATERMELON_2_0)
+    X, y = ch4_2._split_xy(ch4_2.WATERMELON_2_0)
     n = len(X)
-    names = a4_2.FEATURE_NAMES
-    chooser = a4_2.choose_best_information_gain
+    names = ch4_2.FEATURE_NAMES
+    chooser = ch4_2.choose_best_information_gain
     # 后剪枝：分层划分 12/5，避免「后 5 条全是坏瓜」时未剪枝已在验证上极差、剪枝也看不出变化
     tr_idx, va_idx = _stratified_train_val_indices(y, n_val=5, seed=42)
     X_tr = [X[i] for i in tr_idx]
@@ -144,37 +144,37 @@ def main() -> None:
         fontsize=11,
         fontweight="bold",
     )
-    out_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "a4_3_prune.png")
+    out_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "ch4_3_prune.png")
     acc0_va = _accuracy(y_va, clf0.predict(X_va))
     acc_pre_va = _accuracy(y_va, clf_pre.predict(X_va))
-    a4_2._plot_tree_ax(
+    ch4_2._plot_tree_ax(
         axes[0],
         root0,
         f"无剪枝（全{n}条训练）",
         acc0,
         metrics_line=(
-            f"根:{a4_2._root_attr(root0)}  深:{a4_2._tree_depth(root0) - 1}  "
+            f"根:{ch4_2._root_attr(root0)}  深:{ch4_2._tree_depth(root0) - 1}  "
             f"训练acc:{acc0:.2f}  同一验证集acc:{acc0_va:.2f}"
         ),
     )
-    a4_2._plot_tree_ax(
+    ch4_2._plot_tree_ax(
         axes[1],
         root_pre,
         "预剪枝 max_depth=2",
         acc_pre,
         metrics_line=(
-            f"根:{a4_2._root_attr(root_pre)}  深:{a4_2._tree_depth(root_pre) - 1}  "
+            f"根:{ch4_2._root_attr(root_pre)}  深:{ch4_2._tree_depth(root_pre) - 1}  "
             f"训练acc:{acc_pre:.2f}  同一验证集acc:{acc_pre_va:.2f}"
         ),
     )
-    a4_2._plot_tree_ax(
+    ch4_2._plot_tree_ax(
         axes[2],
         root_post,
         "后剪枝（12训 / 分层抽5条验证）",
         val_acc_after_prune,
         metrics_line=(
             f"验证集acc 剪枝前={val_acc_before_prune:.2f} 剪枝后={val_acc_after_prune:.2f}  "
-            f"根:{a4_2._root_attr(root_post)}  深:{a4_2._tree_depth(root_post) - 1}"
+            f"根:{ch4_2._root_attr(root_post)}  深:{ch4_2._tree_depth(root_post) - 1}"
         ),
     )
     fig.savefig(out_path, dpi=150)

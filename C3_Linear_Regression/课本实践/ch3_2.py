@@ -8,6 +8,9 @@
 4. 更新参数 b = b - lr * db
 5. 重复以上步骤，直到达到预设的迭代次数或误差小于某个阈值
 '''
+import os
+
+import matplotlib
 import numpy as np
 import matplotlib.pyplot as plt
 
@@ -46,5 +49,10 @@ plt.xlabel("X")
 plt.ylabel("y")
 plt.title("不同训练轮次的拟合直线")
 plt.legend()
-plt.show()
+_out = os.path.join(os.path.dirname(os.path.abspath(__file__)), "ch3_2_fit.png")
+plt.savefig(_out, dpi=150, bbox_inches="tight")
+if "agg" not in matplotlib.get_backend().lower():
+    plt.show()
+else:
+    plt.close()
 

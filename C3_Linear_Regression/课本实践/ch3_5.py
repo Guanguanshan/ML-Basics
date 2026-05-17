@@ -4,10 +4,13 @@
 可视化：原有数据 vs 非理想数据
 '''
 
+import os
+
+import matplotlib
 import numpy as np
 import matplotlib.pyplot as plt
 
-from a3_4 import train_lda_by_lagrange
+from ch3_4 import train_lda_by_lagrange
 
 def generate_3class_data(n_per_class=80, seed=42, noise_std=0.30, outlier_ratio=0.15):
     """原有数据：构造3类二维样本，并加入高斯噪声和少量离群点。"""
@@ -175,7 +178,12 @@ def plot_compare_results(X_a, y_a, y_ovr_a, y_ovo_a, X_b, y_b, y_ovr_b, y_ovo_b)
         _ = sc
 
     plt.tight_layout()
-    plt.show()
+    out = os.path.join(os.path.dirname(os.path.abspath(__file__)), "ch3_5_multiclass.png")
+    fig.savefig(out, dpi=150, bbox_inches="tight")
+    if "agg" not in matplotlib.get_backend().lower():
+        plt.show()
+    else:
+        plt.close(fig)
 
 
 

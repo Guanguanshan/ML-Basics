@@ -1,6 +1,6 @@
 """
 选择最优属性：信息增益、增益率、基尼指数
-在同目录生成 a4_2_trees.png 
+在同目录生成 ch4_2_trees.png 
 """
 from __future__ import annotations
 
@@ -15,7 +15,7 @@ from typing import Any, Dict, List, Optional, Tuple
 import matplotlib.pyplot as plt
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from a4_1 import DecisionTreeClassifier 
+from ch4_1 import DecisionTreeClassifier 
 
 CRITERION_INFORMATION_GAIN = "information_gain"
 CRITERION_GAIN_RATIO = "gain_ratio"
@@ -304,7 +304,7 @@ def main() -> None:
     ]
     fig, axes = plt.subplots(1, 3, figsize=(14, 4.2), constrained_layout=True)
     fig.suptitle("西瓜数据集2.0 · 三种划分准则决策树对比", fontsize=12, fontweight="bold")
-    out_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "a4_2_trees.png")
+    out_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "ch4_2_trees.png")
     for ax, (key, title) in zip(axes, criteria):
         clf = DecisionTreeClassifier(choose_best_attr=_CRITERIA_FUNCS[key])
         clf.fit(X, y, feature_names=FEATURE_NAMES)
