@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 """决策树基本算法（离散属性、无剪枝）：
 停止条件：
 1. 所有样本属于同一类别

@@ -10,20 +10,22 @@ The project is mainly based on:
 
 The goal of this repository is not only to reproduce algorithms, but also to better understand their assumptions, limitations, and behaviors under different data distributions.
 
+## Chapter guides（各章代码、实验与配图说明）
+
+- [第 3 章 · 线性模型](C3_Linear_Regression/README.md)
+- [第 4 章 · 决策树](C4_Decision_Tree/README.md)
+
 ---
 
 # Repository Structure
 
 ```text
-ML/
-│
-├── ch3-linear-model/
-├── ch4-decision-tree/
-├── ch5-neural-network/
-├── ch6-svm/
-├── ch7-bayes/
-├── ch8-ensemble-learning/
-└── assets/
+ML Basics/
+├── C3_Linear_Regression/     # 第 3 章：线性回归、对率回归、LDA、OvR/OvO（见该目录 README）
+├── C4_Decision_Tree/         # 第 4 章：决策树、准则对比、剪枝、连续与缺失（见该目录 README）
+├── requirements.txt
+├── LICENSE
+└── README.md
 ```
 
 ---
