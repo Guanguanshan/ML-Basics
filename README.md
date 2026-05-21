@@ -14,6 +14,7 @@ The goal of this repository is not only to reproduce algorithms, but also to bet
 
 - [第 3 章 · 线性模型](C3_Linear_Regression/README.md)
 - [第 4 章 · 决策树](C4_Decision_Tree/README.md)
+- [第 5 章 · 神经网络](C5_Neural_Network/README.md)
 
 ---
 
@@ -23,6 +24,7 @@ The goal of this repository is not only to reproduce algorithms, but also to bet
 ML Basics/
 ├── C3_Linear_Regression/     # 第 3 章：线性回归、对率回归、LDA、OvR/OvO（见该目录 README）
 ├── C4_Decision_Tree/         # 第 4 章：决策树、准则对比、剪枝、连续与缺失（见该目录 README）
+├── C5_Neural_Network/        # 第 5 章：神经网络（见该目录 README）
 ├── requirements.txt
 ├── LICENSE
 └── README.md
@@ -36,7 +38,7 @@ ML Basics/
 |---|---|---|
 | Ch3 | Linear Models | ✅ |
 | Ch4 | Decision Trees | ✅ |
-| Ch5 | Neural Networks | ⏳ |
+| Ch5 | Neural Networks | 🔄（已有 ch5_2） |
 | Ch6 | Support Vector Machines | ⏳ |
 | Ch7 | Bayesian Learning | ⏳ |
 | Ch8 | Ensemble Learning | ⏳ |
