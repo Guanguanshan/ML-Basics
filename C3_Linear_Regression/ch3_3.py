@@ -31,7 +31,7 @@ n = len(X)
 
 # sigmoid函数
 def sigmoid(z):
-    return 1 / (1 + np.exp(-z))
+    return 1 / (1 + np.exp(-np.clip(z, -500, 500)))
 
 # 4. 训练
 for epoch in range(epochs):

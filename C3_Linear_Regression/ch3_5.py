@@ -187,28 +187,33 @@ def plot_compare_results(X_a, y_a, y_ovr_a, y_ovo_a, X_b, y_b, y_ovr_b, y_ovo_b)
 
 
 
-# A) 原有数据
-X_a, y_a = generate_3class_data(n_per_class=80, seed=42, noise_std=0.30, outlier_ratio=0.15)
-classes_a = np.unique(y_a)
-ovr_a = train_ovr(X_a, y_a)
-y_ovr_a = predict_ovr(X_a, ovr_a)
-ovo_a = train_ovo(X_a, y_a)
-y_ovo_a = predict_ovo(X_a, ovo_a, classes_a)
-acc_ovr_a = np.mean(y_ovr_a == y_a)
-acc_ovo_a = np.mean(y_ovo_a == y_a)
+def main() -> None:
+    # A) 原有数据
+    X_a, y_a = generate_3class_data(n_per_class=80, seed=42, noise_std=0.30, outlier_ratio=0.15)
+    classes_a = np.unique(y_a)
+    ovr_a = train_ovr(X_a, y_a)
+    y_ovr_a = predict_ovr(X_a, ovr_a)
+    ovo_a = train_ovo(X_a, y_a)
+    y_ovo_a = predict_ovo(X_a, ovo_a, classes_a)
+    acc_ovr_a = np.mean(y_ovr_a == y_a)
+    acc_ovo_a = np.mean(y_ovo_a == y_a)
 
     # B) 非理想数据
-X_b, y_b = generate_3class_nonideal_data(n_per_class=80, seed=123)
-classes_b = np.unique(y_b)
-ovr_b = train_ovr(X_b, y_b)
-y_ovr_b = predict_ovr(X_b, ovr_b)
-ovo_b = train_ovo(X_b, y_b)
-y_ovo_b = predict_ovo(X_b, ovo_b, classes_b)
-acc_ovr_b = np.mean(y_ovr_b == y_b)
-acc_ovo_b = np.mean(y_ovo_b == y_b)
+    X_b, y_b = generate_3class_nonideal_data(n_per_class=80, seed=123)
+    classes_b = np.unique(y_b)
+    ovr_b = train_ovr(X_b, y_b)
+    y_ovr_b = predict_ovr(X_b, ovr_b)
+    ovo_b = train_ovo(X_b, y_b)
+    y_ovo_b = predict_ovo(X_b, ovo_b, classes_b)
+    acc_ovr_b = np.mean(y_ovr_b == y_b)
+    acc_ovo_b = np.mean(y_ovo_b == y_b)
 
-print("[原有数据] OvR train accuracy =", acc_ovr_a)
-print("[原有数据] OvO train accuracy =", acc_ovo_a)
-print("[非理想数据] OvR train accuracy =", acc_ovr_b)
-print("[非理想数据] OvO train accuracy =", acc_ovo_b)
-plot_compare_results(X_a, y_a, y_ovr_a, y_ovo_a, X_b, y_b, y_ovr_b, y_ovo_b)
+    print("[原有数据] OvR train accuracy =", acc_ovr_a)
+    print("[原有数据] OvO train accuracy =", acc_ovo_a)
+    print("[非理想数据] OvR train accuracy =", acc_ovr_b)
+    print("[非理想数据] OvO train accuracy =", acc_ovo_b)
+    plot_compare_results(X_a, y_a, y_ovr_a, y_ovo_a, X_b, y_b, y_ovr_b, y_ovo_b)
+
+
+if __name__ == "__main__":
+    main()

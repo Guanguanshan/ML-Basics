@@ -214,8 +214,8 @@ def train_genetic(
             best_acc = gen_best_acc
             best_loss = gen_best_loss
             best_vec = gen_best_vec.copy()
-        loss_hist.append(best_loss)
-        acc_hist.append(best_acc)
+        loss_hist.append(gen_best_loss)
+        acc_hist.append(gen_best_acc)
 
         mut = mut_scale * (0.35 + 0.65 * (1.0 - g / max(generations, 1)))
         new_pop: List[Array] = [scored[i][2].copy() for i in range(elite)]

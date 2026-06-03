@@ -38,7 +38,7 @@ ML Basics/
 |---|---|---|
 | Ch3 | Linear Models | ✅ |
 | Ch4 | Decision Trees | ✅ |
-| Ch5 | Neural Networks | 🔄（已有 ch5_2） |
+| Ch5 | Neural Networks | ✅（ch5_2 / ch5_3 / ch5_4） |
 | Ch6 | Support Vector Machines | ⏳ |
 | Ch7 | Bayesian Learning | ⏳ |
 | Ch8 | Ensemble Learning | ⏳ |
@@ -116,8 +116,9 @@ The experiments show that LDA performs well under linear assumptions, but strugg
 Python 3.10+
 numpy
 matplotlib
-scikit-learn
 ```
+
+> 当前所有章节脚本仅依赖 `numpy` 与 `matplotlib`（见 `requirements.txt`），不依赖 scikit-learn。
 
 ---
 

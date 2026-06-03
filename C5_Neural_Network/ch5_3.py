@@ -185,7 +185,8 @@ class MLP:
       误差逆传播训练。
       batch_size=None 为全批量；设为 1 即在线 SGD（供 ch5_4 调用）。
       返回 (当前 loss 序列, 当前 acc 序列)，每步记录该时刻真实值。
-      momentum>0 时带动量更新，避免全批量大步长下当前 loss 先降后升。
+      momentum>0 时带动量更新（全批量与小批量分支均生效），
+      避免大步长下当前 loss 先降后升。
       """
       loss_history: List[float] = []
       acc_history: List[float] = []
@@ -199,7 +200,7 @@ class MLP:
           ]
 
       def maybe_log(epoch: int) -> None:
-          if epoch % log_every == 0 or epoch == epochs - 1:
+          if epoch % log_every == 0 or epoch == epochs:
               loss_history.append(self.loss_on(X, y))
               acc_history.append(self.accuracy(X, y))
 
@@ -207,21 +208,20 @@ class MLP:
       for epoch in range(epochs):
           if batch_size is None or batch_size >= n:
               grads = self.backward(X, y)
-              if momentum > 0 and velocity is not None:
-                  new_velocity: ParamPack = []
-                  for i, (W, b) in enumerate(self.params):
-                      dW, db = grads[i]
-                      vW, vb = velocity[i]
-                      vW = momentum * vW - lr * dW
-                      vb = momentum * vb - lr * db
-                      self.params[i] = (W + vW, b + vb)
-                      new_velocity.append((vW, vb))
-                  velocity = new_velocity
-              else:
-                  self.apply_grads(grads, lr)
           else:
               idx = rng.integers(0, n, size=batch_size)
               grads = self.backward(X[idx], y[idx])
+          if momentum > 0 and velocity is not None:
+              new_velocity: ParamPack = []
+              for i, (W, b) in enumerate(self.params):
+                  dW, db = grads[i]
+                  vW, vb = velocity[i]
+                  vW = momentum * vW - lr * dW
+                  vb = momentum * vb - lr * db
+                  self.params[i] = (W + vW, b + vb)
+                  new_velocity.append((vW, vb))
+              velocity = new_velocity
+          else:
               self.apply_grads(grads, lr)
           maybe_log(epoch + 1)
           if verbose_every and (epoch + 1) % verbose_every == 0:

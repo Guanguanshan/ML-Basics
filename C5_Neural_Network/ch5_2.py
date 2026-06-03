@@ -35,7 +35,8 @@ def sigmoid(z: np.ndarray) -> np.ndarray:
 
 
 def bce_loss(pred: np.ndarray, y: np.ndarray, eps: float = 1e-8) -> float:
-    pred = np.clip(pred, eps, 1.0 - eps)
+    pred = np.clip(np.asarray(pred).ravel(), eps, 1.0 - eps)
+    y = np.asarray(y).ravel()
     return float(-np.mean(y * np.log(pred) + (1.0 - y) * np.log(1.0 - pred)))
 
 
